@@ -53,7 +53,7 @@ class Tracks extends Component {
               >
                 <img
                   src={album.images[0].url}
-                  alt='track-image'
+                  alt='track'
                   className='track-image'
                 />
                 <p className='track-text'>{name}</p>
