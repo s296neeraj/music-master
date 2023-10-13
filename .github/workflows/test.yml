@@ -15,6 +15,7 @@ jobs:
       - name: ServiceNow Change Approval
         uses: ServiceNow/servicenow-devops-change@v1.34.2
         with:
+          devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
           devops-integration-token: ${{ secrets.SN_DEVOPS_INTEGRATION_TOKEN }}
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
