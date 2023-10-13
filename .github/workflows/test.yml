@@ -1,4 +1,4 @@
-name: Test
+name: test
 
 
 on:
@@ -6,35 +6,14 @@ on:
     
 
 jobs:
-
-  build:
-    name: Build
-    runs-on: ubuntu-22.04
   
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Set Node.js 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Compile
-      run: npm run build
-
-    
   changeApproval:
     name: ServiceNow Change Approval
-    needs: build
     runs-on: ubuntu-22.04
 
     steps:     
       - name: ServiceNow Change Approval
-        uses: ServiceNow/servicenow-devops-change@v2.0.0
+        uses: ServiceNow/servicenow-devops-change@v1.34.2
         with:
           devops-integration-token: ${{ secrets.SN_DEVOPS_INTEGRATION_TOKEN }}
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
@@ -48,12 +27,3 @@ jobs:
           abortOnChangeCreationFailure: true
           abortOnChangeStepTimeout: true
           deployment-gate: '{"environment":"deploymentgate","jobName":"Deploy"}'
-    
-  deploy:
-    name: Deploy
-    needs: changeApproval
-    runs-on: ubuntu-22.04
-
-    steps:     
-      - name: Run Deployment Script
-        run: echo "Deployment Finished....."
