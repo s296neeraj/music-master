@@ -9,7 +9,7 @@ jobs:
 
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
   
     steps:
     - name: Checkout
@@ -30,7 +30,7 @@ jobs:
   changeApproval:
     name: ServiceNow Change Approval
     needs: build
-    runs-on: ubutun-latest
+    runs-on: ubuntu-22.04
 
     steps:     
       - name: ServiceNow Change Approval
@@ -52,7 +52,7 @@ jobs:
   deploy:
     name: Deploy
     needs: changeApproval
-    runs-on: ubutun-latest
+    runs-on: ubuntu-22.04
 
     steps:     
       - name: Run Deployment Script
